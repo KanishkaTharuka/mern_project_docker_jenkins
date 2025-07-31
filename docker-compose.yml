@@ -1,0 +1,40 @@
+services:
+  mongo:
+    image: mongo2
+    container_name: mongo_container2
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    
+  server:
+    build: ./server
+    container_name: server_container2
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongo
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+    environment:
+      - MONGO_URI=mongodb+srv://kanishkatharuka500:Ui7sDB6XqZGGk9Yg@cluster0.sbrikbs.mongodb.net/
+    command: npm run dev
+
+  client:
+    build: ./client
+    container_name: client_container2
+    ports:
+      - "3000:3000"
+    depends_on:
+      - server
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    
+volumes:
+  mongo_data:

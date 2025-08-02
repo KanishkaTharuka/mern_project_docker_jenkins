@@ -22,7 +22,7 @@ function App() {
 
   return (
     <div>
-      <h1>Add my User</h1>
+      <h1>Add User</h1>
       <form onSubmit={handleSubmit}>
         <input placeholder='Name' onChange={e => setForm({ ...form, name: e.target.value })} />
         <input placeholder='Age' type='number' onChange={e => setForm({ ...form, age: e.target.value })} />

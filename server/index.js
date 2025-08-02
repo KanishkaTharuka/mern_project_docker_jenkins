@@ -16,20 +16,20 @@ mongoose.connect(MONGODB_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
-.then(() => console.log("MongoDB Connected Successfully!"))
+.then(() => console.log("MongoDB Connected Successfully!!!!"))
 .catch(err => {
     console.error("MongoDB Connection Failed:", err);
     process.exit(1);
 });
 
-app.post('/users', async (req, res) => {
+app.post('/', async (req, res) => {
   const { name, age } = req.body;
   const user = new User({ name, age });
   await user.save();
   res.json(user);
 });
 
-app.get('/users', async (req, res) => {
+app.get('/', async (req, res) => {
   const users = await User.find({}, { name: 1, age: 1, _id: 0 });
   res.json(users);
 });

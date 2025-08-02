@@ -22,7 +22,7 @@ mongoose.connect(MONGODB_URL, {
     process.exit(1);
 });
 
-app.post('/users', async (req, res) => {
+app.post('/git-webhook-my-1/', async (req, res) => {
   const { name, age } = req.body;
   const user = new User({ name, age });
   await user.save();

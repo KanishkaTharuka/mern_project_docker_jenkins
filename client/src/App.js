@@ -5,14 +5,14 @@ function App() {
   const [form, setForm] = useState({ name: '', age: '' });
 
   useEffect(() => {
-    fetch('http://localhost:5000/')
+    fetch('http://localhost:5000/users')
       .then(res => res.json())
       .then(data => setUsers(data));
   }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await fetch('http://localhost:5000/', {
+    await fetch('http://localhost:5000/users', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(form)

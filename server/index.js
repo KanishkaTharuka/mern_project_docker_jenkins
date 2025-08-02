@@ -22,14 +22,14 @@ mongoose.connect(MONGODB_URL, {
     process.exit(1);
 });
 
-app.post('/', async (req, res) => {
+app.post('/users', async (req, res) => {
   const { name, age } = req.body;
   const user = new User({ name, age });
   await user.save();
   res.json(user);
 });
 
-app.get('/', async (req, res) => {
+app.get('/users', async (req, res) => {
   const users = await User.find({}, { name: 1, age: 1, _id: 0 });
   res.json(users);
 });
